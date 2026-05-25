@@ -18,8 +18,22 @@ AgentTune flips it: paste a short tuning file matched to your type, and the agen
 ## Types available
 
 ### MBTI
-- [INTJ](mbti/INTJ.md)
-- 15 more coming — calibration in progress
+- [INTJ](mbti/INTJ.md) — Architect
+- [INTP](mbti/INTP.md) — Logician
+- [INFJ](mbti/INFJ.md) — Advocate
+- [INFP](mbti/INFP.md) — Mediator
+- [ISTJ](mbti/ISTJ.md) — Inspector
+- [ISTP](mbti/ISTP.md) — Virtuoso
+- [ISFJ](mbti/ISFJ.md) — Defender
+- [ISFP](mbti/ISFP.md) — Adventurer
+- [ENTJ](mbti/ENTJ.md) — Commander
+- [ENTP](mbti/ENTP.md) — Debater
+- [ENFJ](mbti/ENFJ.md) — Protagonist
+- [ENFP](mbti/ENFP.md) — Campaigner
+- [ESTJ](mbti/ESTJ.md) — Executive
+- [ESTP](mbti/ESTP.md) — Entrepreneur
+- [ESFJ](mbti/ESFJ.md) — Consul
+- [ESFP](mbti/ESFP.md) — Entertainer
 
 ### Enneagram
 - Coming next
