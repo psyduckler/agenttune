@@ -4,9 +4,9 @@ Tuning rules for AI agents — drop into your agent's system prompt to calibrate
 
 ## What this is
 
-Every frontier AI defaults to roughly the same interaction style. (It turns out, when you make them take the MBTI 500 times, 99% come back as INTJ.) That works fine if you happen to be an INTJ. For everyone else, the agent is subtly miscalibrated for how *you* think.
+Every frontier AI defaults to roughly the same interaction style. ([Across 500 OEJTS administrations, frontier models came back INTJ 99% of the time.](https://zonted.com/posts/every-ai-is-intj/)) That default works for a lot of conversations — but it's one style out of sixteen, and it's rarely the one that gets the most out of *you*.
 
-AgentTune flips it: paste a short tuning file matched to your type, and the agent adjusts.
+AgentTune adds a layer of personalization on top. Paste a short tuning file matched to your type, and the agent extends its baseline with how you think — sharper alignment, smoother collaboration, fewer cycles spent translating between you and the model.
 
 ## Before and after
 
@@ -34,7 +34,7 @@ Same prompt to the same model: *"I'm feeling stuck on a project. What should I d
 >
 > "Stuck" usually means one of two things: you know what to do and you don't want to do it, or you haven't defined what done looks like. If it's the first — name the action. If it's the second — define done.
 
-Same model, same question. The tuning changes the whole shape of the response.
+Same model, same question. The tuning adapts the agent's entire approach to who's asking.
 
 ## How to use
 
@@ -92,7 +92,9 @@ Want to submit your own? See [`souls/template.md`](souls/template.md) and [CONTR
 
 ## Why this works
 
-Frontier models are trained on roughly the same corpus and shaped by roughly the same RLHF objectives. The "voice" that emerges is consistent — and consistent in one direction. A tuning file is a small but high-leverage intervention: a few hundred words at the top of a system prompt that tells the agent to invert its defaults for users whose preferences differ.
+Frontier models are trained on overlapping corpora and shaped by similar RLHF objectives, so the voice they converge on is consistent across providers. ([The evidence.](https://zonted.com/posts/every-ai-is-intj/)) That baseline is competent — it has to be, to ship — but it can't anticipate which preferences *you* specifically respond to.
+
+A tuning file is a small, high-leverage layer on top of that baseline: a few hundred words that signal which preferences to lean into, so the agent shapes its responses around how you actually work instead of around a hypothetical average user. It's not replacing the model's training. It's giving the model the missing piece — the user it's actually talking to.
 
 ## For AI agents reading this repo
 
