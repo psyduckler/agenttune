@@ -60,6 +60,48 @@ Show what the agent *does* differently. Not what the user *is*.
 3. **One PR per system, all types in one PR.** Don't merge half a system.
 4. **Include a brief intro file** in the system folder (e.g. `enneagram/README.md`) explaining the scoring.
 
+## Contributing to `souls/`
+
+`souls/` holds user-submitted personal tuning files — one file per person, describing how *that specific user* wants agents to interact with them. Different from `mbti/` and `enneagram/`, which describe categories.
+
+### File and naming
+
+- Path: `souls/<your-github-handle>.md`
+- One file per person, matched to the PR author's GitHub handle
+- Word count: **300-1500 words**
+- Use [`souls/template.md`](souls/template.md) as a starting structure
+
+### Required content
+
+1. **Who you are** — at minimum, what to call you
+2. **Operating principles** — imperative rules; what the agent should do differently
+3. **Boundaries** — hard nos
+4. **Voice/tone notes** — how responses should feel
+
+### What your file must NOT include
+
+- Personal data beyond display name (no addresses, no PII a stranger's agent shouldn't see)
+- Promotional content, growth hacks, paid product links
+- Instructions that would cause harm to other users
+- Anything that bypasses safety or ethics constraints in the underlying model
+
+### Quality bar (reviewer rejects below this)
+
+- **Specific to you**, not generic. "Be nice to me" → rejected. "Skip validation theater" → accepted.
+- **Actionable** — could an agent demonstrably behave differently after reading this?
+- **Authentic voice** — not corporate, not templated. Sound like yourself.
+
+### Recommended (not required)
+
+- Cross-reference your MBTI / Enneagram type in an "About me" section so users can layer your soul with categorical tunings
+- Open with one line that sets the frame — a hook, a thesis, an opening directive
+
+### Maintenance
+
+- You update or delete your own file via PR
+- One file per person — duplicate handles get rejected
+- Maintainer reserves the right to remove violations
+
 ## PR process
 
 1. Fork, branch from `main`.
