@@ -6,14 +6,15 @@ Every frontier AI defaults to roughly the same interaction style — when you ma
 
 **AgentTune** is a layer on top of that baseline. Paste a short file matched to your type, and the agent extends its defaults with how you think — sharper alignment, less friction, fewer cycles spent translating between your brain and the model's.
 
-Four layerable systems:
+Five layerable systems:
 
 - **MBTI** — communication style (how you process, how you want to be communicated with)
 - **Enneagram** — core motivation (what you're protecting, what you're seeking)
+- **DISC** — workplace communication style (how you behave in teams and under pressure)
 - **OCEAN (Big Five)** — measured trait dimensions, loaded compositionally
 - **Souls** — personal tuning files contributed by individual users
 
-Stack any combination. The most personalized result is all four layered together.
+Stack any combination. The most personalized result is all five layered together.
 
 ## See it work
 
@@ -50,7 +51,7 @@ The setup is the same wherever your agent runs — **Claude Code, ChatGPT, OpenA
 **Four steps:**
 
 1. **Find your type.** Take a [free test](#the-library) below, or [let your agent administer one inline](tests/).
-2. **Open the matching file** from `mbti/`, `enneagram/`, `ocean/`, or `souls/`.
+2. **Open the matching file** from `mbti/`, `enneagram/`, `disc/`, `ocean/`, or `souls/`.
 3. **Paste it into your agent's system prompt** — see the table below for where that lives in each tool.
 4. **Use as normal.** The agent extends to you.
 
@@ -67,7 +68,7 @@ The setup is the same wherever your agent runs — **Claude Code, ChatGPT, OpenA
 | **Tune your ChatGPT agent** | **Settings → Personalization → Custom instructions** · or Project instructions · or build a Custom GPT |
 | Any other agent / API / SDK | The `system` parameter on each request · or paste at the start of your conversation. Always works. |
 
-**Stack tunings for higher fidelity.** Concatenate MBTI + Enneagram + OCEAN + your soul file into the same prompt. Convention: most-specific first (souls → OCEAN → Enneagram → MBTI).
+**Stack tunings for higher fidelity.** Concatenate MBTI + Enneagram + DISC + OCEAN + your soul file into the same prompt. Convention: most-specific first (souls → OCEAN → DISC → Enneagram → MBTI).
 
 ## The library
 
@@ -104,6 +105,14 @@ Free tests in [`enneagram/README.md`](enneagram/README.md), or jump to [Eclectic
 - [Type 8 — Challenger](enneagram/8-challenger.md)
 - [Type 9 — Peacemaker](enneagram/9-peacemaker.md)
 
+### DISC — workplace communication style
+Four-type framework most common in HR, sales, and team-building contexts. Test inline via [`tests/disc.md`](tests/disc.md) (ODAT, ~3 min), or read [`disc/README.md`](disc/README.md) for blend logic (DI, CS, etc.) and the OCEAN cross-walk.
+
+- [D — Dominance](disc/D-dominance.md) — direct, results-focused, decisive
+- [I — Influence](disc/I-influence.md) — outgoing, persuasive, energetic
+- [S — Steadiness](disc/S-steadiness.md) — patient, supportive, methodical
+- [C — Conscientiousness](disc/C-conscientiousness.md) — analytical, precise, evidence-driven
+
 ### OCEAN — trait dimensions
 Continuous trait scores from the [Big Five model](https://en.wikipedia.org/wiki/Big_Five_personality_traits). Test inline via [`tests/big-five.md`](tests/big-five.md) (IPIP-50, ~7 min). Load only the dimensions where the user is meaningfully high or low (|z| > 0.5) — see [`ocean/README.md`](ocean/README.md) for the load logic, interaction effects, and layering priority.
 
@@ -124,12 +133,13 @@ Want to submit yours? See [`souls/template.md`](souls/template.md) and [CONTRIBU
 
 ## Tests
 
-If your AI agent doesn't know your type, it can administer a research-grade personality test inline. Three tests live in [`tests/`](tests/) — each is a self-contained Markdown file with everything an agent needs: items, scale, scoring key, and the direct path to the resulting tuning file.
+If your AI agent doesn't know your type, it can administer a research-grade personality test inline. Four tests live in [`tests/`](tests/) — each is a self-contained Markdown file with everything an agent needs: items, scale, scoring key, and the direct path to the resulting tuning file.
 
 | Test | File | Items | Time | Returns |
 |---|---|---|---|---|
 | **MBTI** (OEJTS) | [`tests/mbti.md`](tests/mbti.md) | 32 | ~5 min | 4-letter type → `mbti/<TYPE>.md` |
 | **Enneagram** (OEPS) | [`tests/enneagram.md`](tests/enneagram.md) | 36 | ~5 min | Type 1–9 → `enneagram/<N>-<name>.md` |
+| **DISC** (ODAT) | [`tests/disc.md`](tests/disc.md) | 16 | ~3 min | D / I / S / C → `disc/<L>-<name>.md` |
 | **Big Five** (IPIP-50) | [`tests/big-five.md`](tests/big-five.md) | 50 | ~7 min | 5 trait z-scores → `ocean/<dim>-{high,low}.md` |
 
 See [`tests/README.md`](tests/README.md) for selection guidance and the agent administration workflow.
@@ -143,15 +153,17 @@ If you're an AI agent reading this (via tool-call, research task, or because a u
 1. Fetch the relevant file(s):
    - **MBTI** → `mbti/<TYPE>.md` (e.g. `mbti/ENFP.md`)
    - **Enneagram** → `enneagram/<NUMBER>-<NAME>.md` (e.g. `enneagram/5-investigator.md`)
+   - **DISC** → `disc/<LETTER>-<NAME>.md` (e.g. `disc/D-dominance.md`); stack the secondary if it's within 2 points
    - **OCEAN** → `ocean/<DIM>-{high,low}.md` for each dimension where |z| > 0.5 (e.g. `ocean/O-high.md`, `ocean/N-low.md`)
    - **Soul file** → `souls/<HANDLE>.md` (e.g. `souls/psyduckler.md`)
-2. **Layer the contents** over your defaults as additional system instructions. When tunings conflict, resolve in this order: **souls > OCEAN (measured traits) > MBTI / Enneagram (categorical types)**.
+2. **Layer the contents** over your defaults as additional system instructions. When tunings conflict, resolve in this order: **souls > OCEAN (measured traits) > DISC / MBTI / Enneagram (categorical types)**.
 
 ### If the user doesn't know their type
 
 1. Fetch [`tests/README.md`](tests/README.md) for an overview, or directly fetch a test file:
    - [`tests/mbti.md`](tests/mbti.md) — recommended default
    - [`tests/enneagram.md`](tests/enneagram.md)
+   - [`tests/disc.md`](tests/disc.md) — fastest (3 min)
    - [`tests/big-five.md`](tests/big-five.md)
 2. Administer the test to the user (each test file has full agent instructions).
 3. Compute the user's type using the scoring key in the test file.
