@@ -43,17 +43,31 @@ Same prompt to the same model: *"I'm feeling stuck on a project. What should I d
 
 Same model, same question. The tuning adapts the agent's entire approach to who's asking.
 
-## How to use
+## Get started
 
-1. **Find your type.** Free tests linked in [the library](#the-library) below.
-2. **Open the matching file** from `mbti/`, `enneagram/`, or `souls/`.
-3. **Paste it into your agent's system prompt.** This is called different things in different tools:
-   - **ChatGPT** → Settings → Personalization → Custom Instructions
-   - **Claude** → Project Instructions (or paste at conversation start)
-   - **Cursor** → Settings → Rules for AI
-   - **Gemini** → Gems custom instructions
-   - **API / SDK** → the `system` message
+The setup is the same wherever your agent runs — **Claude Code, ChatGPT, OpenAI Codex, Cursor, Gemini, Hermes, OpenClaw**, or any API directly. Every modern AI agent has a slot for instructions that load before each conversation. AgentTune fills that slot with text tuned to how you think.
+
+**Four steps:**
+
+1. **Find your type.** Take a [free test](#the-library) below, or [let your agent administer one inline](tests/).
+2. **Open the matching file** from `mbti/`, `enneagram/`, `ocean/`, or `souls/`.
+3. **Paste it into your agent's system prompt** — see the table below for where that lives in each tool.
 4. **Use as normal.** The agent extends to you.
+
+### Where to paste it — by agent
+
+| Agent | Where the tuning goes |
+|---|---|
+| **Tune your Claude agent** | Claude Code → `CLAUDE.md` in project root (or `~/.claude/CLAUDE.md` global) · Claude.ai → Project → **Project instructions** |
+| **Tune your Codex agent** | `AGENTS.md` in project root (or `~/.codex/AGENTS.md` for global tuning) |
+| **Tune your OpenClaw agent** | `AGENTS.md` in project root |
+| **Tune your Hermes agent** | `system_prompt` field of your active persona / config · or `--system <path-to-file>` on the CLI |
+| **Tune your Cursor agent** | `.cursor/rules/agenttune.mdc` in project root · or **Settings → Rules for AI** |
+| **Tune your Gemini agent** | Code Assist / Antigravity → agent system instructions panel · Gems → **Custom instructions** at gemini.google.com |
+| **Tune your ChatGPT agent** | **Settings → Personalization → Custom instructions** · or Project instructions · or build a Custom GPT |
+| Any other agent / API / SDK | The `system` parameter on each request · or paste at the start of your conversation. Always works. |
+
+**Stack tunings for higher fidelity.** Concatenate MBTI + Enneagram + OCEAN + your soul file into the same prompt. Convention: most-specific first (souls → OCEAN → Enneagram → MBTI).
 
 ## The library
 
