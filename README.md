@@ -2,7 +2,9 @@
 
 A library of tuning files that align your AI agent with how *you* think.
 
-Every frontier AI defaults to roughly the same interaction style — when you make them take the MBTI 500 times, [they come back INTJ 99% of the time](https://zonted.com/posts/every-ai-is-intj/). It's a competent default. But it's one style out of sixteen, and it rarely matches the way *you* actually work.
+**[agent-tune.com](https://agent-tune.com)** · [Research](https://agent-tune.com/research) · [Contributing](CONTRIBUTING.md)
+
+Every frontier AI defaults to roughly the same interaction style — when you make them take the MBTI 500 times, [they come back INTJ 99% of the time](https://agent-tune.com/research). It's a competent default. But it's one style out of sixteen, and it rarely matches the way *you* actually work.
 
 **AgentTune** is a layer on top of that baseline. Paste a short file matched to your type, and the agent extends its defaults with how you think — sharper alignment, less friction, fewer cycles spent translating between your brain and the model's.
 
