@@ -4,7 +4,7 @@ PRs and issues welcome. The bar for merging: **does this make the tuning more ac
 
 ## What we want
 
-- **Tunings for new personality systems** — HEXACO, Astrology, attachment style, Love Languages, etc. (MBTI, Enneagram, DISC, and OCEAN/Big Five are already in the library)
+- **Tunings for new personality systems** — HEXACO, Astrology, Fisher Temperament Inventory, Love Languages, RIASEC/Holland Codes, etc. (MBTI, Enneagram, DISC, Attachment, and OCEAN/Big Five are already in the library)
 - **Edits to existing files** — sharpening, corrections, additions that real users of that type endorse
 - **Tool-specific UI instructions** — additions to the README for tools we don't cover yet
 - **Bug fixes** — typos, broken links, formatting

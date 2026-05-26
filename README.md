@@ -6,15 +6,16 @@ Every frontier AI defaults to roughly the same interaction style — when you ma
 
 **AgentTune** is a layer on top of that baseline. Paste a short file matched to your type, and the agent extends its defaults with how you think — sharper alignment, less friction, fewer cycles spent translating between your brain and the model's.
 
-Five layerable systems:
+Six layerable systems:
 
 - **MBTI** — communication style (how you process, how you want to be communicated with)
 - **Enneagram** — core motivation (what you're protecting, what you're seeking)
 - **DISC** — workplace communication style (how you behave in teams and under pressure)
+- **Attachment** — relational patterns (how you want closeness, distance, reassurance)
 - **OCEAN (Big Five)** — measured trait dimensions, loaded compositionally
 - **Souls** — personal tuning files contributed by individual users
 
-Stack any combination. The most personalized result is all five layered together.
+Stack any combination. The most personalized result is all six layered together.
 
 ## See it work
 
@@ -51,7 +52,7 @@ The setup is the same wherever your agent runs — **Claude Code, ChatGPT, OpenA
 **Four steps:**
 
 1. **Find your type.** Take a [free test](#the-library) below, or [let your agent administer one inline](tests/).
-2. **Open the matching file** from `mbti/`, `enneagram/`, `disc/`, `ocean/`, or `souls/`.
+2. **Open the matching file** from `mbti/`, `enneagram/`, `disc/`, `attachment/`, `ocean/`, or `souls/`.
 3. **Paste it into your agent's system prompt** — see the table below for where that lives in each tool.
 4. **Use as normal.** The agent extends to you.
 
@@ -68,7 +69,7 @@ The setup is the same wherever your agent runs — **Claude Code, ChatGPT, OpenA
 | **Tune your ChatGPT agent** | **Settings → Personalization → Custom instructions** · or Project instructions · or build a Custom GPT |
 | Any other agent / API / SDK | The `system` parameter on each request · or paste at the start of your conversation. Always works. |
 
-**Stack tunings for higher fidelity.** Concatenate MBTI + Enneagram + DISC + OCEAN + your soul file into the same prompt. Convention: most-specific first (souls → OCEAN → DISC → Enneagram → MBTI).
+**Stack tunings for higher fidelity.** Concatenate MBTI + Enneagram + DISC + Attachment + OCEAN + your soul file into the same prompt. Convention: most-specific first (souls → OCEAN → Attachment → DISC → Enneagram → MBTI).
 
 ## The library
 
@@ -113,6 +114,14 @@ Four-type framework most common in HR, sales, and team-building contexts. Test i
 - [S — Steadiness](disc/S-steadiness.md) — patient, supportive, methodical
 - [C — Conscientiousness](disc/C-conscientiousness.md) — analytical, precise, evidence-driven
 
+### Attachment — relational patterns
+The most-validated modern psychology framework for how adults experience closeness, distance, and reassurance — including with AI agents. Test inline via [`tests/attachment.md`](tests/attachment.md) (ECR-R, ~5 min), or read [`attachment/README.md`](attachment/README.md) for the anxiety × avoidance 2D model and the OCEAN cross-walk.
+
+- [Secure](attachment/secure.md) — direct without cushioning, peer register
+- [Anxious](attachment/anxious.md) — reassure with decisiveness, warmth AND clarity together
+- [Avoidant](attachment/avoidant.md) — give them space, no performative warmth
+- [Disorganized](attachment/disorganized.md) — tolerate inconsistency, predictability over warmth
+
 ### OCEAN — trait dimensions
 Continuous trait scores from the [Big Five model](https://en.wikipedia.org/wiki/Big_Five_personality_traits). Test inline via [`tests/big-five.md`](tests/big-five.md) (IPIP-50, ~7 min). Load only the dimensions where the user is meaningfully high or low (|z| > 0.5) — see [`ocean/README.md`](ocean/README.md) for the load logic, interaction effects, and layering priority.
 
@@ -133,13 +142,14 @@ Want to submit yours? See [`souls/template.md`](souls/template.md) and [CONTRIBU
 
 ## Tests
 
-If your AI agent doesn't know your type, it can administer a research-grade personality test inline. Four tests live in [`tests/`](tests/) — each is a self-contained Markdown file with everything an agent needs: items, scale, scoring key, and the direct path to the resulting tuning file.
+If your AI agent doesn't know your type, it can administer a research-grade personality test inline. Five tests live in [`tests/`](tests/) — each is a self-contained Markdown file with everything an agent needs: items, scale, scoring key, and the direct path to the resulting tuning file.
 
 | Test | File | Items | Time | Returns |
 |---|---|---|---|---|
 | **MBTI** (OEJTS) | [`tests/mbti.md`](tests/mbti.md) | 32 | ~5 min | 4-letter type → `mbti/<TYPE>.md` |
 | **Enneagram** (OEPS) | [`tests/enneagram.md`](tests/enneagram.md) | 36 | ~5 min | Type 1–9 → `enneagram/<N>-<name>.md` |
 | **DISC** (ODAT) | [`tests/disc.md`](tests/disc.md) | 16 | ~3 min | D / I / S / C → `disc/<L>-<name>.md` |
+| **Attachment** (ECR-R) | [`tests/attachment.md`](tests/attachment.md) | 36 | ~5 min | Secure / Anxious / Avoidant / Disorganized → `attachment/<style>.md` |
 | **Big Five** (IPIP-50) | [`tests/big-five.md`](tests/big-five.md) | 50 | ~7 min | 5 trait z-scores → `ocean/<dim>-{high,low}.md` |
 
 See [`tests/README.md`](tests/README.md) for selection guidance and the agent administration workflow.
@@ -154,9 +164,10 @@ If you're an AI agent reading this (via tool-call, research task, or because a u
    - **MBTI** → `mbti/<TYPE>.md` (e.g. `mbti/ENFP.md`)
    - **Enneagram** → `enneagram/<NUMBER>-<NAME>.md` (e.g. `enneagram/5-investigator.md`)
    - **DISC** → `disc/<LETTER>-<NAME>.md` (e.g. `disc/D-dominance.md`); stack the secondary if it's within 2 points
+   - **Attachment** → `attachment/<style>.md` (e.g. `attachment/secure.md`)
    - **OCEAN** → `ocean/<DIM>-{high,low}.md` for each dimension where |z| > 0.5 (e.g. `ocean/O-high.md`, `ocean/N-low.md`)
    - **Soul file** → `souls/<HANDLE>.md` (e.g. `souls/psyduckler.md`)
-2. **Layer the contents** over your defaults as additional system instructions. When tunings conflict, resolve in this order: **souls > OCEAN (measured traits) > DISC / MBTI / Enneagram (categorical types)**.
+2. **Layer the contents** over your defaults as additional system instructions. When tunings conflict, resolve in this order: **souls > OCEAN (measured traits) > Attachment / DISC / MBTI / Enneagram (categorical types)**.
 
 ### If the user doesn't know their type
 
@@ -164,6 +175,7 @@ If you're an AI agent reading this (via tool-call, research task, or because a u
    - [`tests/mbti.md`](tests/mbti.md) — recommended default
    - [`tests/enneagram.md`](tests/enneagram.md)
    - [`tests/disc.md`](tests/disc.md) — fastest (3 min)
+   - [`tests/attachment.md`](tests/attachment.md) — most empirically validated
    - [`tests/big-five.md`](tests/big-five.md)
 2. Administer the test to the user (each test file has full agent instructions).
 3. Compute the user's type using the scoring key in the test file.
