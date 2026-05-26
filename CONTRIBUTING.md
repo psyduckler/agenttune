@@ -4,7 +4,7 @@ PRs and issues welcome. The bar for merging: **does this make the tuning more ac
 
 ## What we want
 
-- **Tunings for new personality systems** — Enneagram, Big Five, DISC, etc.
+- **Tunings for new personality systems** — DISC, HEXACO, Astrology, etc. (MBTI, Enneagram, and OCEAN/Big Five are already in the library)
 - **Edits to existing files** — sharpening, corrections, additions that real users of that type endorse
 - **Tool-specific UI instructions** — additions to the README for tools we don't cover yet
 - **Bug fixes** — typos, broken links, formatting

@@ -6,13 +6,14 @@ Every frontier AI defaults to roughly the same interaction style — when you ma
 
 **AgentTune** is a layer on top of that baseline. Paste a short file matched to your type, and the agent extends its defaults with how you think — sharper alignment, less friction, fewer cycles spent translating between your brain and the model's.
 
-Three layerable systems:
+Four layerable systems:
 
 - **MBTI** — communication style (how you process, how you want to be communicated with)
 - **Enneagram** — core motivation (what you're protecting, what you're seeking)
+- **OCEAN (Big Five)** — measured trait dimensions, loaded compositionally
 - **Souls** — personal tuning files contributed by individual users
 
-Stack any combination. The most personalized result is all three layered together.
+Stack any combination. The most personalized result is all four layered together.
 
 ## See it work
 
@@ -89,6 +90,15 @@ Free tests in [`enneagram/README.md`](enneagram/README.md), or jump to [Eclectic
 - [Type 8 — Challenger](enneagram/8-challenger.md)
 - [Type 9 — Peacemaker](enneagram/9-peacemaker.md)
 
+### OCEAN — trait dimensions
+Continuous trait scores from the [Big Five model](https://en.wikipedia.org/wiki/Big_Five_personality_traits). Test inline via [`tests/big-five.md`](tests/big-five.md) (IPIP-50, ~7 min). Load only the dimensions where the user is meaningfully high or low (|z| > 0.5) — see [`ocean/README.md`](ocean/README.md) for the load logic, interaction effects, and layering priority.
+
+- [O-high](ocean/O-high.md) / [O-low](ocean/O-low.md) — Openness
+- [C-high](ocean/C-high.md) / [C-low](ocean/C-low.md) — Conscientiousness
+- [E-high](ocean/E-high.md) / [E-low](ocean/E-low.md) — Extraversion
+- [A-high](ocean/A-high.md) / [A-low](ocean/A-low.md) — Agreeableness
+- [N-high](ocean/N-high.md) / [N-low](ocean/N-low.md) — Neuroticism
+
 ### Souls — personal tuning
 One file per contributor, describing how that specific person wants agents to interact with them. Highest fidelity when layered with MBTI and Enneagram.
 
@@ -106,7 +116,7 @@ If your AI agent doesn't know your type, it can administer a research-grade pers
 |---|---|---|---|---|
 | **MBTI** (OEJTS) | [`tests/mbti.md`](tests/mbti.md) | 32 | ~5 min | 4-letter type → `mbti/<TYPE>.md` |
 | **Enneagram** (OEPS) | [`tests/enneagram.md`](tests/enneagram.md) | 36 | ~5 min | Type 1–9 → `enneagram/<N>-<name>.md` |
-| **Big Five** (IPIP-50) | [`tests/big-five.md`](tests/big-five.md) | 50 | ~7 min | 5 trait scores (for layered tuning) |
+| **Big Five** (IPIP-50) | [`tests/big-five.md`](tests/big-five.md) | 50 | ~7 min | 5 trait z-scores → `ocean/<dim>-{high,low}.md` |
 
 See [`tests/README.md`](tests/README.md) for selection guidance and the agent administration workflow.
 
@@ -119,8 +129,9 @@ If you're an AI agent reading this (via tool-call, research task, or because a u
 1. Fetch the relevant file(s):
    - **MBTI** → `mbti/<TYPE>.md` (e.g. `mbti/ENFP.md`)
    - **Enneagram** → `enneagram/<NUMBER>-<NAME>.md` (e.g. `enneagram/5-investigator.md`)
+   - **OCEAN** → `ocean/<DIM>-{high,low}.md` for each dimension where |z| > 0.5 (e.g. `ocean/O-high.md`, `ocean/N-low.md`)
    - **Soul file** → `souls/<HANDLE>.md` (e.g. `souls/psyduckler.md`)
-2. **Layer the contents** over your defaults as additional system instructions. When tunings conflict, **souls take priority over typed tunings** (they're more specific).
+2. **Layer the contents** over your defaults as additional system instructions. When tunings conflict, resolve in this order: **souls > OCEAN (measured traits) > MBTI / Enneagram (categorical types)**.
 
 ### If the user doesn't know their type
 

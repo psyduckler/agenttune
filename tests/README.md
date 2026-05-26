@@ -10,13 +10,13 @@ All three tests are research-grade and free to administer.
 |---|---|---|---|---|---|
 | [mbti.md](mbti.md) | OEJTS | 32 | ~5 min | 4-letter MBTI type | `mbti/<TYPE>.md` |
 | [enneagram.md](enneagram.md) | OEPS (v1 scored) | 36 | ~5 min | Type 1–9 | `enneagram/<N>-<name>.md` |
-| [big-five.md](big-five.md) | IPIP-50 | 50 | ~7 min | 5 continuous trait scores | Layered tuning (no direct file) |
+| [big-five.md](big-five.md) | IPIP-50 | 50 | ~7 min | 5 continuous trait scores | `ocean/<dim>-{high,low}.md` per dimension |
 
 ## Which to use
 
 - **MBTI** — fastest, most cultural recognition, communication-style focused. Default for most users.
 - **Enneagram** — captures core motivation (what the user is protecting and seeking) rather than communication style. Complements MBTI; many users layer both.
-- **Big Five** — research-grade continuous trait scores. Useful when you want fine-grained data or to make layered tuning decisions. No direct file mapping yet, but informs how to weight MBTI/Enneagram tunings.
+- **Big Five (OCEAN)** — research-grade continuous trait scores. Maps to 10 compositional files in `ocean/` — one per dimension-extreme (O/C/E/A/N × high/low). Loaded selectively based on the user's z-score on each dimension. Highest fidelity of the three tests for fine-grained tuning.
 
 ## Workflow for AI agents
 

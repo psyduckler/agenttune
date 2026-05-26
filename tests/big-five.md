@@ -5,7 +5,7 @@
 **Scale**: 1–5 Likert (Very Inaccurate → Very Accurate)
 **Time**: ~7 minutes
 **Returns**: 5 continuous trait scores (Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism), each on a 10–50 range
-**Maps to**: No direct file. Use for layered/fine-grained tuning interpretation (see "Using the result" below).
+**Maps to**: `ocean/<DIM>-{high,low}.md` — load one file per dimension where |z| > 0.5 (see "Using the result" below).
 
 ---
 
@@ -125,40 +125,55 @@ Treat percentiles as rough — the norms are based on adult populations and exac
 
 ## Using the result
 
-Big Five doesn't map to a single AgentTune file (unlike MBTI or Enneagram). Instead, use the trait scores to **inform layered tuning** in one of these ways:
+Big Five maps to **10 compositional tuning files** in [`ocean/`](../ocean/), one per dimension-extreme. Load the file for each dimension where the user is meaningfully high or low — skip the dimensions where they're near average.
 
-### 1. Standalone qualitative tuning (no file fetch)
+### Step 1: Compute z-scores
 
-Translate the user's profile into direct system-prompt instructions. For example:
+For each dimension, use the M and SD above:
 
-> "User has very high Conscientiousness (~94th percentile), very low Neuroticism (~10th percentile), moderate-high Extraversion (~70th percentile), high Openness (~88th percentile), and moderate Agreeableness (~55th percentile). Tune your responses to be highly structured, decisive (no hedging given low N), intellectually substantive, and pragmatic about social warmth (don't over-perform empathy)."
+```
+z = (user_score − population_M) / population_SD
+```
 
-This works when no other tuning file matches well.
+### Step 2: Decide what to load
 
-### 2. Cross-reference to MBTI tuning
+For each of the five dimensions:
 
-Map Big Five to approximate MBTI letters:
+| z-score | Action |
+|---|---|
+| **z > +0.5** | Load `ocean/<DIM>-high.md` (e.g. `ocean/O-high.md`) |
+| **z < −0.5** | Load `ocean/<DIM>-low.md` (e.g. `ocean/O-low.md`) |
+| **−0.5 ≤ z ≤ +0.5** | Skip — this trait is near average; model defaults handle it |
+| **|z| > 2** | Load the file AND prepend: "this trait dominates the user's interaction style — when in conflict with other tunings, this one wins" |
+
+A user with high O, high C, moderate E, low A, low N loads four files. A user near the mean on all five loads zero — and that's the right answer.
+
+### Step 3: Handle interactions and layering
+
+- **Interactions between dimensions** (e.g. High O + Low C → explorer who doesn't ship, or High N + Low A → anxious and critical) are documented in [`ocean/README.md`](../ocean/README.md). When loaded files combine in ways that change the rule, the OCEAN README documents the resolution.
+- **Priority order** when OCEAN layers with MBTI / Enneagram / souls:
+  1. **Souls** — most specific (the user's own stated preferences)
+  2. **OCEAN** — measured trait data
+  3. **MBTI / Enneagram** — categorical type
+
+OCEAN beats MBTI / Enneagram on conflict because trait scores are higher-resolution than categorical types. They layer well in practice.
+
+### Alternative: cross-reference to MBTI
+
+If the user wants a categorical handle as well, Big Five maps approximately to MBTI:
 
 | Big Five | MBTI letter implication |
 |---|---|
-| Low E score | I |
-| High E score | E |
-| High O score | N |
-| Low O score | S |
-| Low A score | T |
-| High A score | F |
-| High C score | J |
-| Low C score | P |
+| Low E | I |
+| High E | E |
+| High O | N |
+| Low O | S |
+| Low A | T |
+| High A | F |
+| High C | J |
+| Low C | P |
 
-Then fetch the implied `mbti/<TYPE>.md`. This is a fallback — direct MBTI is more reliable.
-
-### 3. Wing-direction for Enneagram (if also administered)
-
-When layered with the Enneagram test, use Big Five to disambiguate between possible wings:
-- High C → suggests Type 1 wing if dominant is 9 or 2
-- High N → suggests Type 4 wing or Type 6 wing depending on adjacency
-- Low A → suggests Type 8 wing if dominant is 7 or 9
-- Etc.
+This is a fallback. Direct MBTI testing is more reliable, and OCEAN files alone are higher-fidelity than the MBTI map.
 
 ---
 
