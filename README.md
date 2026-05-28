@@ -13,7 +13,10 @@ A library of tuning files that align your AI agent with how *you* think.
 
 **[agent-tune.com](https://agent-tune.com)** · [Research](https://agent-tune.com/research) · [Contributing](CONTRIBUTING.md)
 
-> ### Every frontier AI is secretly the same person.
+<p align="center">
+  <a href="https://agent-tune.com/research"><img src="assets/06-stat-intj.png" alt="Every frontier AI is secretly the same person — run one through the MBTI and it comes back INTJ ~99% of the time. One default personality, out of sixteen." width="100%"></a>
+</p>
+
 > Make a model take the MBTI 500 times and it comes back **INTJ ~99% of the time** — one default personality, out of sixteen, that rarely matches how *you* actually work. [See the research →](https://agent-tune.com/research)
 
 **AgentTune is the layer that fixes that.** Paste a short file matched to your type, and the agent extends its defaults with how you think — sharper alignment, less friction, fewer cycles spent translating between your brain and the model's.
