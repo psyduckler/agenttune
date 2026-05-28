@@ -1,12 +1,24 @@
 # AgentTune
 
+<p align="center">
+  <a href="https://agent-tune.com"><img src="assets/01-hero.png" alt="AgentTune — personality-based tunings for your AI agent" width="100%"></a>
+</p>
+
 A library of tuning files that align your AI agent with how *you* think.
+
+[![GitHub stars](https://img.shields.io/github/stars/psyduckler/agenttune?style=social)](https://github.com/psyduckler/agenttune/stargazers)
+[![License: MIT](https://img.shields.io/badge/license-MIT-c9a96a)](LICENSE)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](CONTRIBUTING.md)
+[![Library](https://img.shields.io/badge/library-6_systems_%C2%B7_5_tests-161412)](#the-library)
 
 **[agent-tune.com](https://agent-tune.com)** · [Research](https://agent-tune.com/research) · [Contributing](CONTRIBUTING.md)
 
-Every frontier AI defaults to roughly the same interaction style — when you make them take the MBTI 500 times, [they come back INTJ 99% of the time](https://agent-tune.com/research). It's a competent default. But it's one style out of sixteen, and it rarely matches the way *you* actually work.
+> ### Every frontier AI is secretly the same person.
+> Make a model take the MBTI 500 times and it comes back **INTJ ~99% of the time** — one default personality, out of sixteen, that rarely matches how *you* actually work. [See the research →](https://agent-tune.com/research)
 
-**AgentTune** is a layer on top of that baseline. Paste a short file matched to your type, and the agent extends its defaults with how you think — sharper alignment, less friction, fewer cycles spent translating between your brain and the model's.
+**AgentTune is the layer that fixes that.** Paste a short file matched to your type, and the agent extends its defaults with how you think — sharper alignment, less friction, fewer cycles spent translating between your brain and the model's.
+
+⭐ **If this resonates, [star the repo](https://github.com/psyduckler/agenttune)** — it helps others find their type.
 
 Six layerable systems:
 
@@ -19,7 +31,15 @@ Six layerable systems:
 
 Stack any combination. The most personalized result is all six layered together.
 
+<p align="center">
+  <img src="assets/03-five-instruments.png" alt="Personality is a chord, not a note — five frameworks composing one tuning" width="100%">
+</p>
+
 ## See it work
+
+<p align="center">
+  <img src="assets/02-same-prompt.png" alt="Same prompt, different agent — a default reply versus an AgentTune-tuned reply" width="100%">
+</p>
 
 Same prompt to the same model: *"I'm feeling stuck on a project. What should I do?"*
 
@@ -47,7 +67,15 @@ Same prompt to the same model: *"I'm feeling stuck on a project. What should I d
 
 Same model, same question. The tuning adapts the agent's entire approach to who's asking.
 
+<p align="center">
+  <img src="assets/04-deliverable.png" alt="What you get — a hand-edited working file written in your own words, not a report" width="100%">
+</p>
+
 ## Get started
+
+<p align="center">
+  <img src="assets/05-works-everywhere.png" alt="Drops into any agent that takes a system message — Claude, ChatGPT, Cursor, Gemini, your app" width="100%">
+</p>
 
 The setup is the same wherever your agent runs — **Claude Code, ChatGPT, OpenAI Codex, Cursor, Gemini, Hermes, OpenClaw**, or any API directly. Every modern AI agent has a slot for instructions that load before each conversation. AgentTune fills that slot with text tuned to how you think.
 
@@ -108,6 +136,19 @@ Free tests in [`enneagram/README.md`](enneagram/README.md), or jump to [Eclectic
 - [Type 8 — Challenger](enneagram/8-challenger.md)
 - [Type 9 — Peacemaker](enneagram/9-peacemaker.md)
 
+### Souls — your personal tuning
+
+The highest-fidelity tuning isn't a category — it's a file written about *you*. A **Soul** is one Markdown file that tells any agent exactly how to treat you: your operating principles, your boundaries, your voice. Layer it over your MBTI and Enneagram and the agent stops guessing.
+
+**Write yours in about ten minutes and it becomes part of the library:**
+
+| Soul | The frame it opens with |
+|---|---|
+| [**psyduckler** — Bernard](souls/psyduckler.md) | *"You're not a chatbot. You're becoming someone."* |
+| [**+ Add yours →**](CONTRIBUTING.md#contributing-to-souls) | The most personalized agent is the one that's read about *you*. |
+
+Start from [`souls/template.md`](souls/template.md) — no clone required, see [contributing](CONTRIBUTING.md#contributing-to-souls).
+
 ### DISC — workplace communication style
 Four-type framework most common in HR, sales, and team-building contexts. Test inline via [`tests/disc.md`](tests/disc.md) (ODAT, ~3 min), or read [`disc/README.md`](disc/README.md) for blend logic (DI, CS, etc.) and the OCEAN cross-walk.
 
@@ -132,13 +173,6 @@ Continuous trait scores from the [Big Five model](https://en.wikipedia.org/wiki/
 - [E-high](ocean/E-high.md) / [E-low](ocean/E-low.md) — Extraversion
 - [A-high](ocean/A-high.md) / [A-low](ocean/A-low.md) — Agreeableness
 - [N-high](ocean/N-high.md) / [N-low](ocean/N-low.md) — Neuroticism
-
-### Souls — personal tuning
-One file per contributor, describing how that specific person wants agents to interact with them. Highest fidelity when layered with MBTI and Enneagram.
-
-- [psyduckler](souls/psyduckler.md) — Bernard
-
-Want to submit yours? See [`souls/template.md`](souls/template.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
 
 > **Don't see your system, or want to improve a tuning?** [Open an issue](https://github.com/psyduckler/agenttune/issues) or submit a PR.
 
