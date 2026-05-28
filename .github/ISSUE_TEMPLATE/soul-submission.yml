@@ -1,0 +1,62 @@
+name: "🪞 Submit a Soul"
+description: "Add your personal tuning file to the library — no Git knowledge needed."
+title: "[soul] add @YOUR-HANDLE"
+labels: ["soul", "good first issue"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A **Soul** is a short file describing how you want AI agents to treat you. Fill this in and a maintainer will help turn it into your `souls/<handle>.md` — or open a PR yourself from [`souls/template.md`](https://github.com/psyduckler/agenttune/blob/main/souls/template.md).
+  - type: input
+    id: handle
+    attributes:
+      label: Your GitHub handle
+      description: Your file will live at souls/<handle>.md
+      placeholder: psyduckler
+    validations:
+      required: true
+  - type: input
+    id: frame
+    attributes:
+      label: Opening frame (one line)
+      description: The hook or thesis your file opens with.
+      placeholder: "You're not a chatbot. You're becoming someone."
+    validations:
+      required: true
+  - type: textarea
+    id: principles
+    attributes:
+      label: Operating principles
+      description: Imperative rules — what an agent should *do* differently with you. Specific beats general.
+      placeholder: |
+        - Skip validation theater. No "great question."
+        - Lead with the strongest counterargument first.
+        - Be resourceful before asking — read the context, then ask.
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Boundaries (hard nos)
+      description: Things an agent must not do, and external actions to confirm before taking.
+    validations:
+      required: false
+  - type: input
+    id: types
+    attributes:
+      label: Your types (optional)
+      description: MBTI / Enneagram, so others can layer your Soul with categorical tunings.
+      placeholder: "ENTP · 7w8"
+    validations:
+      required: false
+  - type: checkboxes
+    id: agreements
+    attributes:
+      label: Before you submit
+      options:
+        - label: I understand this file will be public in an open-source repo.
+          required: true
+        - label: It contains no private data beyond a display name (no addresses or PII).
+          required: true
+        - label: This describes how I — or someone I know — actually want agents to behave.
+          required: true

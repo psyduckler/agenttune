@@ -71,6 +71,8 @@ Show what the agent *does* differently. Not what the user *is*.
 - Word count: **300-1500 words**
 - Use [`souls/template.md`](souls/template.md) as a starting structure
 
+**No clone needed.** Open the template in your browser with [github.dev](https://github.dev/psyduckler/agenttune/blob/main/souls/template.md), or [create your file directly](https://github.com/psyduckler/agenttune/new/main?filename=souls/your-handle.md) — edit, then commit straight to a PR from the browser. Prefer not to touch Git at all? [Open a Soul-submission issue](https://github.com/psyduckler/agenttune/issues/new?template=soul-submission.yml) and we'll help turn it into a file.
+
 ### Required content
 
 1. **Who you are** — at minimum, what to call you
